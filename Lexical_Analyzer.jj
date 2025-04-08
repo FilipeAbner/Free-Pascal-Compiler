@@ -68,6 +68,11 @@ TOKEN : {
     | < TRY: "try" >
 
 //Others
+    // Hint Directives
+    | < DEPRECATED: "deprecated" >
+    | < EXPERIMENTAL: "experimental" >
+    | < PLATFORM: "platform" >
+    | < UNIMPLEMENTED: "unimplemented" >
 
     // Letras e dígitos
     | < #LETTER: ["a"-"z","A"-"Z"] >
