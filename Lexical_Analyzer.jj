@@ -139,12 +139,19 @@ TOKEN : {
 
     // Letras e dígitos
     | < #LETTER: ["a"-"z","A"-"Z"] >
+    | < #LETTER_HEXADECIMAL: ["a"-"f","A"-"F"] >
     | < #DIGIT: ["0"-"9"] >
+    | < #OCTAL_DIGIT: ["0"-"7"] >
+    | < #BINARY_DIGIT: ["0"-"1"] >
 
-    // Números reais e inteiros
-    | < REAL: ( <DIGIT>+ "." <DIGIT>* ) | ( <DIGIT>* "." <DIGIT>+ ) >
-    | < NUM: <DIGIT>+ >
-
+    // Numbers
+    | < REAL: ( <DIGIT>+ "." <DIGIT>* ) >
+    | < INTEGER: <DIGIT>+ >
+    | < HEXADECIMAL: "$" (<DIGIT> | <LETTER_HEXADECIMAL>)+  
+    | < OCTAL: "&" (<OCTAL_DIGIT>)+
+    | < BINARY: "%" (<BINARY_DIGIT>)+
+    | < EXPONENTIAL: ( <DIGIT>+ ("e" | "E") <DIGIT>+ )
+    
     // Identificadores
     | < ID: <LETTER> ( <LETTER> | <DIGIT> )* >
     | < ESCAPED_ID: "&" <LETTER> ( <LETTER> | <DIGIT> )* >
