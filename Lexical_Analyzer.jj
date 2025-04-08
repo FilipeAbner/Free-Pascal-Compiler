@@ -67,6 +67,9 @@ TOKEN : {
     | < THREADVAR: "threadvar" >
     | < TRY: "try" >
 
+//Label
+    | < LABEL: "label" >
+
 //Modifies (They are not exactly reserved words in the sense that they can be used as identifiers, but in specific places)
     | < ABSOLUTE: "absolute" >
     | < ABSTRACT: "abstract" >
@@ -79,10 +82,8 @@ TOKEN : {
     | < CPPDECL: "cppdecl" >
     | < CVAR: "cvar" >
     | < DEFAULT: "default" >
-    | < DEPRECATED: "deprecated" >
     | < DYNAMIC: "dynamic" >
     | < ENUMERATOR: "enumerator" >
-    | < EXPERIMENTAL: "experimental" >
     | < EXPORT: "export" >
     | < EXTERNAL: "external" >
     | < FAR: "far" >
@@ -106,7 +107,6 @@ TOKEN : {
     | < OVERLOAD: "overload" >
     | < OVERRIDE: "override" >
     | < PASCAL: "pascal" >
-    | < PLATFORM: "platform" >
     | < PRIVATE: "private" >
     | < PROTECTED: "protected" >
     | < PUBLIC: "public" >
@@ -124,18 +124,18 @@ TOKEN : {
     | < STORED: "stored" >
     | < STRICT: "strict" >
     | < UNALIGNED: "unaligned" >
-    | < UNIMPLEMENTED: "unimplemented" >
     | < VARARGS: "varargs" >
     | < VIRTUAL: "virtual" >
     | < WINAPI: "winapi" >
     | < WRITE: "write" >
 
-//Others
-    // Hint Directives
+// Hint Directives (are Modifies too)
     | < DEPRECATED: "deprecated" >
     | < EXPERIMENTAL: "experimental" >
     | < PLATFORM: "platform" >
     | < UNIMPLEMENTED: "unimplemented" >
+
+//Others
 
     // Letras e dígitos
     | < #LETTER: ["a"-"z","A"-"Z"] >
@@ -143,26 +143,27 @@ TOKEN : {
     | < #DIGIT: ["0"-"9"] >
     | < #OCTAL_DIGIT: ["0"-"7"] >
     | < #BINARY_DIGIT: ["0"-"1"] >
+    | < #SIGN: ["+", "-"] >
 
     // Numbers
-    | < REAL: ( <DIGIT>+ "." <DIGIT>* ) >
-    | < INTEGER: <DIGIT>+ >
-    | < HEXADECIMAL: "$" (<DIGIT> | <LETTER_HEXADECIMAL>)+  
-    | < OCTAL: "&" (<OCTAL_DIGIT>)+
-    | < BINARY: "%" (<BINARY_DIGIT>)+
-    | < EXPONENTIAL: ( <DIGIT>+ ("e" | "E") <DIGIT>+ )
+    | < REAL: ( <SIGN> )? <DIGIT>+ "." <DIGIT>* >
+    | < INTEGER: ( <SIGN> )? <DIGIT>+ >
+    | < HEXADECIMAL: ( <SIGN> )? "$" (<DIGIT> | <LETTER_HEXADECIMAL>)+ >
+    | < OCTAL: ( <SIGN> )? "&" (<OCTAL_DIGIT>)+ >
+    | < BINARY: ( <SIGN> )? "%" (<BINARY_DIGIT>)+ >
+    | < EXPONENTIAL: ( <SIGN> )? ( <DIGIT>+ (["e","E"]) ( <SIGN> )? <DIGIT>+ ) >
     
     // Identificadores
     | < ID: <LETTER> ( <LETTER> | <DIGIT> )* >
     | < ESCAPED_ID: "&" <LETTER> ( <LETTER> | <DIGIT> )* >
 }
 
-/* The regular expressions here will be skipped during lexical analysis: */
 /* testar:
-    < COMMENT_MULTIPLE_LINES: "{" (~["}"])* "}" >
+    < COMMENT_MULTIPLE_LINES: ( ("{" (~["}"])* "}")+ | ("(*" (~["}"])* "*)")+ ) >
   | < COMMENT_SINGLE_LINE: "//" (~["\n", "\r"])* >
 */
 
+/* The regular expressions here will be skipped during lexical analysis: */
 SKIP : {
     < COMMENT_MULTIPLE_LINES: "{" ((["a"-"z"])* (["0"-"9"])* ("\n" | "\r" | "\r\n"))* "}">
     | COMMENT_SINGLE_LINE: "//" ((["a"-"z"])* (["0"-"9"])*)*
@@ -176,4 +177,17 @@ JavaCC will automatically throw an error. */
 
 void Start() :
 {}
-{ ( <IF> | <ID> | <NUM> | <REAL> )* }
+{
+    (
+        <IF>
+      | <ID>
+      | <SIGNED_INTEGER>
+      | <SIGNED_REAL>
+      | <SIGNED_EXPONENTIAL>
+      | <HEXADECIMAL>
+      | <OCTAL>
+      | <BINARY>
+      | <REAL> 
+    )*
+}
+
