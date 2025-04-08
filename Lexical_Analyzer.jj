@@ -79,6 +79,7 @@ TOKEN : {
 
     // Identificadores
     | < ID: <LETTER> ( <LETTER> | <DIGIT> )* >
+    | < ESCAPED_ID: "&" <LETTER> ( <LETTER> | <DIGIT> )* >
 }
 
 /* The regular expressions here will be skipped during lexical analysis: */
