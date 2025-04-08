@@ -184,16 +184,10 @@ JavaCC will automatically throw an error. */
 void Start() :
 {}
 {
-    (
-        <IF>
-      | <ID>
-      | <SIGNED_INTEGER>
-      | <SIGNED_REAL>
-      | <SIGNED_EXPONENTIAL>
-      | <HEXADECIMAL>
-      | <OCTAL>
-      | <BINARY>
-      | <REAL> 
-    )*
+    Token t;
+    do {
+        t = getNextToken();
+        System.out.println("Token: " + t.image + " | Tipo: " + tokenImage[t.kind]);
+    } while (t.kind != 0); // 0 = EOF
 }
 
