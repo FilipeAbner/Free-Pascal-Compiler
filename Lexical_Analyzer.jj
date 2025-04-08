@@ -1,0 +1,103 @@
+
+PARSER_BEGIN(MyParser)
+    class MyParser {}
+PARSER_END(MyParser)
+
+OPTIONS {
+    IGNORE_CASE = true;
+}
+
+/* For the regular expressions on the right, the token on the left will be returned: */
+
+TOKEN : {
+//Turbo Pascal reserved words
+    //Palavras-chave de controle
+    < IF: "if" >
+    | < THEN: "then" >
+    | < ELSE: "else" >
+    | < BEGIN: "begin" >
+    | < END: "end" >
+    | < CASE: "case" >
+    | < REPEAT: "repeat" >
+    | < UNTIL: "until" >
+    | < WHILE: "while" >
+    | < FOR: "for" >
+    | < TO: "to" >
+    | < DOWNTO: "downto" >
+    | < DO: "do" >
+
+    //Declarações
+    | < PROGRAM: "program" >
+    | < VAR: "var" >
+    | < CONST: "const" >
+    | < TYPE: "type" >
+    | < FUNCTION: "function" >
+    | < PROCEDURE: "procedure" >
+    | < UNIT: "unit" >
+    | < USES: "uses" >
+
+    //Operações e operadores booleanos/matemáticos
+    | < DIV: "div" >
+    | < MOD: "mod" >
+    | < AND: "and" >
+    | < OR: "or" >
+    | < NOT: "not" >
+    | < XOR: "xor" >
+    | < SHL: "shl" >
+    | < SHR: "shr" >
+
+//Object Pascal reserved words
+    | < AS: "as" >
+    | < CLASS: "class" >
+    | < DISPINTERFACE: "dispinterface" >
+    | < EXCEPT: "except" >
+    | < EXPORTS: "exports" >
+    | < FINALIZATION: "finalization" >
+    | < FINALLY: "finally" >
+    | < INITIALIZATION: "initialization" >
+    | < INLINE: "inline" >
+    | < IS: "is" >
+    | < LIBRARY: "library" >
+    | < ON: "on" >
+    | < OUT: "out" >
+    | < PACKED: "packed" >
+    | < PROPERTY: "property" >
+    | < RAISE: "raise" >
+    | < RESOURCESTRING: "resourcestring" >
+    | < THREADVAR: "threadvar" >
+    | < TRY: "try" >
+
+//Others
+
+    // Letras e dígitos
+    | < #LETTER: ["a"-"z","A"-"Z"] >
+    | < #DIGIT: ["0"-"9"] >
+
+    // Números reais e inteiros
+    | < REAL: ( <DIGIT>+ "." <DIGIT>* ) | ( <DIGIT>* "." <DIGIT>+ ) >
+    | < NUM: <DIGIT>+ >
+
+    // Identificadores
+    | < ID: <LETTER> ( <LETTER> | <DIGIT> )* >
+}
+
+/* The regular expressions here will be skipped during lexical analysis: */
+/* testar:
+    < COMMENT_MULTIPLE_LINES: "{" (~["}"])* "}" >
+  | < COMMENT_SINGLE_LINE: "//" (~["\n", "\r"])* >
+*/
+
+SKIP : {
+    < COMMENT_MULTIPLE_LINES: "{" ((["a"-"z"])* (["0"-"9"])* ("\n" | "\r" | "\r\n"))* "}">
+    | COMMENT_SINGLE_LINE: "//" ((["a"-"z"])* (["0"-"9"])*)*
+    | ""
+    | "\t"
+    | "\n"
+}
+
+/* If we have a substring that does not match any of the regular expressions in TOKEN or SKIP,
+JavaCC will automatically throw an error. */
+
+void Start() :
+{}
+{ ( <IF> | <ID> | <NUM> | <REAL> )* }
