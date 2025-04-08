@@ -137,13 +137,19 @@ TOKEN : {
 
 //Others
 
-    // Letras e dígitos
+    // Intern Tokens
     | < #LETTER: ["a"-"z","A"-"Z"] >
     | < #LETTER_HEXADECIMAL: ["a"-"f","A"-"F"] >
     | < #DIGIT: ["0"-"9"] >
     | < #OCTAL_DIGIT: ["0"-"7"] >
     | < #BINARY_DIGIT: ["0"-"1"] >
     | < #SIGN: ["+", "-"] >
+    | < #SINGLE_QUOTES: "''" >
+    | < #CONTROL_STRING: "'" ("#" <DIGIT>+)* "'" >
+
+
+    // Strings
+    | < STRING: "'" ( ~["'"] | <SINGLE_QUOTES> | <CONTROL_STRING> )* "'" >
 
     // Numbers
     | < REAL: ( <SIGN> )? <DIGIT>+ "." <DIGIT>* >
