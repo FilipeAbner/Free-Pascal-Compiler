@@ -179,6 +179,40 @@ TOKEN : {
     | < MINUS_ASSIGN: "-=" >
     | < MULT_ASSIGN: "*=" >
     | < DIV_ASSIGN: "/=" >
+    
+//Data types
+    // Integer types
+    | < BYTE: "byte" >
+    | < SHORTINT: "shortint" >
+    | < SMALLINT: "smallint" >
+    | < WORD: "word" >
+    | < INTEGER: "integer" >
+    | < CARDINAL: "cardinal" >
+    | < LONGINT: "longint" >
+    | < LONGWORD: "longword" >
+    | < INT64: "int64" >
+    | < QWORD: "qword" >
+
+    // Boolean types
+    | < BOOLEAN: "boolean" >
+    | < BOOLEAN16: "boolean16" >
+    | < BOOLEAN32: "boolean32" >
+    | < BOOLEAN64: "boolean64" >
+    | < BYTEBOOL: "bytebool" >
+    | < WORDBOOL: "wordbool" >
+    | < LONGBool: "longbool" >
+    | < QWORDBool: "qwordbool" >
+
+    // Char types
+    | < ANSICHAR: "ansichar" >
+    | < WIDECHAR: "widechar" >
+
+    // Ordinal functions
+    | < ORD: "ord" >
+    | < INC: "inc" >
+    | < DEC: "dec" >
+    | < SUCC: "succ" >
+    | < PRED: "pred" >
 
 //Others
 
@@ -197,12 +231,12 @@ TOKEN : {
     | < STRING: "'" ( ~["'"] | <SINGLE_QUOTES> | <CONTROL_STRING> )* "'" >
 
     // Numbers
-    | < REAL: ( <SIGN> )? ( <DIGIT> )+ "." ( <DIGIT> )* >
-    | < INTEGER: ( <SIGN> )? ( <DIGIT> )+ >
-    | < HEXADECIMAL: ( <SIGN> )? "$" (<DIGIT> | <LETTER_HEXADECIMAL>)+ >
-    | < OCTAL: ( <SIGN> )? "&" (<OCTAL_DIGIT>)+ >
-    | < BINARY: ( <SIGN> )? "%" (<BINARY_DIGIT>)+ >
-    | < EXPONENTIAL: ( <SIGN> )? ( ( <DIGIT> )+ (["e","E"]) ( <SIGN> )? ( <DIGIT> )+ ) >
+    | < NUMBER_REAL: ( <SIGN> )? ( <DIGIT> )+ "." ( <DIGIT> )* >
+    | < NUMBER_INTEGER: ( <SIGN> )? ( <DIGIT> )+ >
+    | < NUMBER_HEXADECIMAL: ( <SIGN> )? "$" (<DIGIT> | <LETTER_HEXADECIMAL>)+ >
+    | < NUMBER_OCTAL: ( <SIGN> )? "&" (<OCTAL_DIGIT>)+ >
+    | < NUMBER_BINARY: ( <SIGN> )? "%" (<BINARY_DIGIT>)+ >
+    | < NUMBER_EXPONENTIAL: ( <SIGN> )? ( ( <DIGIT> )+ (["e","E"]) ( <SIGN> )? ( <DIGIT> )+ ) >
     
     // Identifiers
     | < ID: <LETTER> ( <LETTER> | <DIGIT> )* >
