@@ -12,9 +12,10 @@ public class Lexical_Analyzer {
 PARSER_END(Lexical_Analyzer)
 
 /* For the regular expressions on the right, the token on the left will be returned: */
+
 TOKEN : {
 //Turbo Pascal reserved words
-    //Palavras-chave de controle
+    //Control Keywords
     < KW_IF: "if" >
     | < KW_THEN: "then" >
     | < KW_ELSE: "else" >
@@ -29,7 +30,7 @@ TOKEN : {
     | < KW_DOWNTO: "downto" >
     | < KW_DO: "do" >
 
-    //Declarações
+    //Statements
     | < KW_PROGRAM: "program" >
     | < KW_VAR: "var" >
     | < KW_CONST: "const" >
@@ -39,7 +40,7 @@ TOKEN : {
     | < KW_UNIT: "unit" >
     | < KW_USES: "uses" >
 
-    //Operações e operadores booleanos/matemáticos
+    //Boolean/mathematical operations and operators
     | < KW_DIV: "div" >
     | < KW_MOD: "mod" >
     | < KW_AND: "and" >
@@ -138,6 +139,47 @@ TOKEN : {
     | < KW_PLATFORM: "platform" >
     | < KW_UNIMPLEMENTED: "unimplemented" >
 
+// Special symbols
+    | < SEMI: ";" >
+    
+    // Simple symbols
+    | < PLUS: "+" >
+    | < MINUS: "-" >
+    | < MULT: "*" >
+    | < DIVIDE: "/" >
+    | < EQUAL: "=" >
+    | < LT: "<" >
+    | < GT: ">" >
+    | < LBRACKET: "[" >
+    | < RBRACKET: "]" >
+    | < DOT: "." >
+    | < COMMA: "," >
+    | < LPAREN: "(" >
+    | < RPAREN: ")" >
+    | < COLON: ":" >
+    | < POINTER: "^" >
+    | < AT: "@" >
+    | < LBRACE: "{" >
+    | < RBRACE: "}" >
+    | < DOLLAR: "$" >
+    | < HASH: "#" >
+    | < AMPERSAND: "&" >
+    | < PERCENT: "%" >
+
+    // Compound operators and double symbols
+    | < SHL_SYM: "<<" >
+    | < SHR_SYM: ">>" >
+    | < EXP_SYM: "**" >
+    | < NE: "<>" >
+    | < REVERSED_NE: "><" >
+    | < LE: "<=" >
+    | < GE: ">=" >
+    | < ASSIGN: ":=" >
+    | < PLUS_ASSIGN: "+=" >
+    | < MINUS_ASSIGN: "-=" >
+    | < MULT_ASSIGN: "*=" >
+    | < DIV_ASSIGN: "/=" >
+
 //Others
 
     // Intern Tokens
@@ -162,23 +204,16 @@ TOKEN : {
     | < BINARY: ( <SIGN> )? "%" (<BINARY_DIGIT>)+ >
     | < EXPONENTIAL: ( <SIGN> )? ( ( <DIGIT> )+ (["e","E"]) ( <SIGN> )? ( <DIGIT> )+ ) >
     
-    // Identificadores
+    // Identifiers
     | < ID: <LETTER> ( <LETTER> | <DIGIT> )* >
     | < ESCAPED_ID: "&" <LETTER> ( <LETTER> | <DIGIT> )* >
 }
-
-/* testar:
-    < COMMENT_MULTIPLE_LINES: ( ("{" (~["}"])* "}")+ | ("(*" (~["}"])* "*)")+ ) >
-  | < COMMENT_SINGLE_LINE: "//" (~["\n", "\r"])* >
-*/
 
 /* The regular expressions here will be skipped during lexical analysis: */
 SKIP : {
     < COMMENT_MULTIPLE_LINES: ( "{" (~["}"])* "}" )+ | ( "(*" ( ~["*", ")"] )* "*)" )+ >
     | < COMMENT_SINGLE_LINE: "//" (~["\n", "\r"])* >
-    | ""
-    | "\t"
-    | "\n"
+    | < WHITESPACE: ([" ", "\t", "\r", "\n"])+ >
 }
 
 /* If we have a substring that does not match any of the regular expressions in TOKEN or SKIP,
@@ -191,7 +226,7 @@ void Start() :
         Token t;
         do {
             t = getNextToken();
-            System.out.println("Token: " + t.image + " | Tipo: " + tokenImage[t.kind]);
+            System.out.println("Token: " + t.image + " | Type: " + tokenImage[t.kind]);
         } while (t.kind != 0); // 0 = EOF
     }
 }
