@@ -1,11 +1,15 @@
-
-PARSER_BEGIN(MyParser)
-    class MyParser {}
-PARSER_END(MyParser)
-
-OPTIONS {
+options {
     IGNORE_CASE = true;
 }
+
+PARSER_BEGIN(Lexical_Analyzer)
+public class Lexical_Analyzer {
+    public static void main(String[] args) throws ParseException {
+        Lexical_Analyzer parser = new Lexical_Analyzer(System.in);
+        parser.Start();
+    }
+}
+PARSER_END(Lexical_Analyzer)
 
 /* For the regular expressions on the right, the token on the left will be returned: */
 
@@ -143,21 +147,21 @@ TOKEN : {
     | < #DIGIT: ["0"-"9"] >
     | < #OCTAL_DIGIT: ["0"-"7"] >
     | < #BINARY_DIGIT: ["0"-"1"] >
-    | < #SIGN: ["+", "-"] >
+    | < #SIGN: ["+"] | ["-"] >
     | < #SINGLE_QUOTES: "''" >
-    | < #CONTROL_STRING: "'" ("#" <DIGIT>+)* "'" >
+    | < #CONTROL_STRING: "'" ("#" ( <DIGIT> )+ )* "'" >
 
 
     // Strings
     | < STRING: "'" ( ~["'"] | <SINGLE_QUOTES> | <CONTROL_STRING> )* "'" >
 
     // Numbers
-    | < REAL: ( <SIGN> )? <DIGIT>+ "." <DIGIT>* >
-    | < INTEGER: ( <SIGN> )? <DIGIT>+ >
+    | < REAL: ( <SIGN> )? ( <DIGIT> )+ "." ( <DIGIT> )* >
+    | < INTEGER: ( <SIGN> )? ( <DIGIT> )+ >
     | < HEXADECIMAL: ( <SIGN> )? "$" (<DIGIT> | <LETTER_HEXADECIMAL>)+ >
     | < OCTAL: ( <SIGN> )? "&" (<OCTAL_DIGIT>)+ >
     | < BINARY: ( <SIGN> )? "%" (<BINARY_DIGIT>)+ >
-    | < EXPONENTIAL: ( <SIGN> )? ( <DIGIT>+ (["e","E"]) ( <SIGN> )? <DIGIT>+ ) >
+    | < EXPONENTIAL: ( <SIGN> )? ( ( <DIGIT> )+ (["e","E"]) ( <SIGN> )? ( <DIGIT> )+ ) >
     
     // Identificadores
     | < ID: <LETTER> ( <LETTER> | <DIGIT> )* >
@@ -171,8 +175,8 @@ TOKEN : {
 
 /* The regular expressions here will be skipped during lexical analysis: */
 SKIP : {
-    < COMMENT_MULTIPLE_LINES: "{" ((["a"-"z"])* (["0"-"9"])* ("\n" | "\r" | "\r\n"))* "}">
-    | COMMENT_SINGLE_LINE: "//" ((["a"-"z"])* (["0"-"9"])*)*
+    < COMMENT_MULTIPLE_LINES: ( "{" (~["}"])* "}" )+ | ( "(*" ( ~["*", ")"] )* "*)" )+ >
+    | < COMMENT_SINGLE_LINE: "//" (~["\n", "\r"])* >
     | ""
     | "\t"
     | "\n"
@@ -184,10 +188,13 @@ JavaCC will automatically throw an error. */
 void Start() :
 {}
 {
-    Token t;
-    do {
-        t = getNextToken();
-        System.out.println("Token: " + t.image + " | Tipo: " + tokenImage[t.kind]);
-    } while (t.kind != 0); // 0 = EOF
+    {
+        Token t;
+        do {
+            t = getNextToken();
+            System.out.println("Token: " + t.image + " | Tipo: " + tokenImage[t.kind]);
+        } while (t.kind != 0); // 0 = EOF
+    }
 }
+
 

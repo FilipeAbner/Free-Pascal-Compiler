@@ -2,8 +2,8 @@ JAVACC=javacc
 JAVA=javac
 JAVARUN=java
 
-SRC=MyParser.jj
-GEN=MyParser.java
+SRC=Lexical_Analyzer.jj
+GEN=Lexical_Analyzer.java
 INPUT=teste.pas
 
 all: compile run
@@ -13,7 +13,7 @@ compile:
 	$(JAVA) *.java
 
 run:
-	$(JAVARUN) MyParser < $(INPUT)
+	$(JAVARUN) Lexical_Analyzer < $(INPUT)
 
 clean:
 	rm -f *.class *.java *.tokens *.bak
