@@ -12,132 +12,131 @@ public class Lexical_Analyzer {
 PARSER_END(Lexical_Analyzer)
 
 /* For the regular expressions on the right, the token on the left will be returned: */
-
 TOKEN : {
 //Turbo Pascal reserved words
     //Palavras-chave de controle
-    < IF: "if" >
-    | < THEN: "then" >
-    | < ELSE: "else" >
-    | < BEGIN: "begin" >
-    | < END: "end" >
-    | < CASE: "case" >
-    | < REPEAT: "repeat" >
-    | < UNTIL: "until" >
-    | < WHILE: "while" >
-    | < FOR: "for" >
-    | < TO: "to" >
-    | < DOWNTO: "downto" >
-    | < DO: "do" >
+    < KW_IF: "if" >
+    | < KW_THEN: "then" >
+    | < KW_ELSE: "else" >
+    | < KW_BEGIN: "begin" >
+    | < KW_END: "end" >
+    | < KW_CASE: "case" >
+    | < KW_REPEAT: "repeat" >
+    | < KW_UNTIL: "until" >
+    | < KW_WHILE: "while" >
+    | < KW_FOR: "for" >
+    | < KW_TO: "to" >
+    | < KW_DOWNTO: "downto" >
+    | < KW_DO: "do" >
 
     //Declarações
-    | < PROGRAM: "program" >
-    | < VAR: "var" >
-    | < CONST: "const" >
-    | < TYPE: "type" >
-    | < FUNCTION: "function" >
-    | < PROCEDURE: "procedure" >
-    | < UNIT: "unit" >
-    | < USES: "uses" >
+    | < KW_PROGRAM: "program" >
+    | < KW_VAR: "var" >
+    | < KW_CONST: "const" >
+    | < KW_TYPE: "type" >
+    | < KW_FUNCTION: "function" >
+    | < KW_PROCEDURE: "procedure" >
+    | < KW_UNIT: "unit" >
+    | < KW_USES: "uses" >
 
     //Operações e operadores booleanos/matemáticos
-    | < DIV: "div" >
-    | < MOD: "mod" >
-    | < AND: "and" >
-    | < OR: "or" >
-    | < NOT: "not" >
-    | < XOR: "xor" >
-    | < SHL: "shl" >
-    | < SHR: "shr" >
+    | < KW_DIV: "div" >
+    | < KW_MOD: "mod" >
+    | < KW_AND: "and" >
+    | < KW_OR: "or" >
+    | < KW_NOT: "not" >
+    | < KW_XOR: "xor" >
+    | < KW_SHL: "shl" >
+    | < KW_SHR: "shr" >
 
 //Object Pascal reserved words
-    | < AS: "as" >
-    | < CLASS: "class" >
-    | < DISPINTERFACE: "dispinterface" >
-    | < EXCEPT: "except" >
-    | < EXPORTS: "exports" >
-    | < FINALIZATION: "finalization" >
-    | < FINALLY: "finally" >
-    | < INITIALIZATION: "initialization" >
-    | < INLINE: "inline" >
-    | < IS: "is" >
-    | < LIBRARY: "library" >
-    | < ON: "on" >
-    | < OUT: "out" >
-    | < PACKED: "packed" >
-    | < PROPERTY: "property" >
-    | < RAISE: "raise" >
-    | < RESOURCESTRING: "resourcestring" >
-    | < THREADVAR: "threadvar" >
-    | < TRY: "try" >
+    | < KW_AS: "as" >
+    | < KW_CLASS: "class" >
+    | < KW_DISPINTERFACE: "dispinterface" >
+    | < KW_EXCEPT: "except" >
+    | < KW_EXPORTS: "exports" >
+    | < KW_FINALIZATION: "finalization" >
+    | < KW_FINALLY: "finally" >
+    | < KW_INITIALIZATION: "initialization" >
+    | < KW_INLINE: "inline" >
+    | < KW_IS: "is" >
+    | < KW_LIBRARY: "library" >
+    | < KW_ON: "on" >
+    | < KW_OUT: "out" >
+    | < KW_PACKED: "packed" >
+    | < KW_PROPERTY: "property" >
+    | < KW_RAISE: "raise" >
+    | < KW_RESOURCESTRING: "resourcestring" >
+    | < KW_THREADVAR: "threadvar" >
+    | < KW_TRY: "try" >
 
 //Label
-    | < LABEL: "label" >
+    | < KW_LABEL: "label" >
 
 //Modifies (They are not exactly reserved words in the sense that they can be used as identifiers, but in specific places)
-    | < ABSOLUTE: "absolute" >
-    | < ABSTRACT: "abstract" >
-    | < ALIAS: "alias" >
-    | < ASSEMBLER: "assembler" >
-    | < BITPACKED: "bitpacked" >
-    | < BREAK: "break" >
-    | < CDECL: "cdecl" >
-    | < CONTINUE: "continue" >
-    | < CPPDECL: "cppdecl" >
-    | < CVAR: "cvar" >
-    | < DEFAULT: "default" >
-    | < DYNAMIC: "dynamic" >
-    | < ENUMERATOR: "enumerator" >
-    | < EXPORT: "export" >
-    | < EXTERNAL: "external" >
-    | < FAR: "far" >
-    | < FAR16: "far16" >
-    | < FORWARD: "forward" >
-    | < GENERIC: "generic" >
-    | < HELPER: "helper" >
-    | < IMPLEMENTS: "implements" >
-    | < INDEX: "index" >
-    | < INTERRUPT: "interrupt" >
-    | < IOCHECK: "iocheck" >
-    | < LOCAL: "local" >
-    | < MESSAGE: "message" >
-    | < NAME: "name" >
-    | < NEAR: "near" >
-    | < NODEFAULT: "nodefault" >
-    | < NORETURN: "noreturn" >
-    | < NOSTACKFRAME: "nostackframe" >
-    | < OLDFPCCALL: "oldfpccall" >
-    | < OTHERWISE: "otherwise" >
-    | < OVERLOAD: "overload" >
-    | < OVERRIDE: "override" >
-    | < PASCAL: "pascal" >
-    | < PRIVATE: "private" >
-    | < PROTECTED: "protected" >
-    | < PUBLIC: "public" >
-    | < PUBLISHED: "published" >
-    | < READ: "read" >
-    | < REGISTER: "register" >
-    | < REINTRODUCE: "reintroduce" >
-    | < RESULT: "result" >
-    | < SAFECALL: "safecall" >
-    | < SAVEREGISTERS: "saveregisters" >
-    | < SOFTFLOAT: "softfloat" >
-    | < SPECIALIZE: "specialize" >
-    | < STATIC: "static" >
-    | < STDCALL: "stdcall" >
-    | < STORED: "stored" >
-    | < STRICT: "strict" >
-    | < UNALIGNED: "unaligned" >
-    | < VARARGS: "varargs" >
-    | < VIRTUAL: "virtual" >
-    | < WINAPI: "winapi" >
-    | < WRITE: "write" >
+    | < KW_ABSOLUTE: "absolute" >
+    | < KW_ABSTRACT: "abstract" >
+    | < KW_ALIAS: "alias" >
+    | < KW_ASSEMBLER: "assembler" >
+    | < KW_BITPACKED: "bitpacked" >
+    | < KW_BREAK: "break" >
+    | < KW_CDECL: "cdecl" >
+    | < KW_CONTINUE: "continue" >
+    | < KW_CPPDECL: "cppdecl" >
+    | < KW_CVAR: "cvar" >
+    | < KW_DEFAULT: "default" >
+    | < KW_DYNAMIC: "dynamic" >
+    | < KW_ENUMERATOR: "enumerator" >
+    | < KW_EXPORT: "export" >
+    | < KW_EXTERNAL: "external" >
+    | < KW_FAR: "far" >
+    | < KW_FAR16: "far16" >
+    | < KW_FORWARD: "forward" >
+    | < KW_GENERIC: "generic" >
+    | < KW_HELPER: "helper" >
+    | < KW_IMPLEMENTS: "implements" >
+    | < KW_INDEX: "index" >
+    | < KW_INTERRUPT: "interrupt" >
+    | < KW_IOCHECK: "iocheck" >
+    | < KW_LOCAL: "local" >
+    | < KW_MESSAGE: "message" >
+    | < KW_NAME: "name" >
+    | < KW_NEAR: "near" >
+    | < KW_NODEFAULT: "nodefault" >
+    | < KW_NORETURN: "noreturn" >
+    | < KW_NOSTACKFRAME: "nostackframe" >
+    | < KW_OLDFPCCALL: "oldfpccall" >
+    | < KW_OTHERWISE: "otherwise" >
+    | < KW_OVERLOAD: "overload" >
+    | < KW_OVERRIDE: "override" >
+    | < KW_PASCAL: "pascal" >
+    | < KW_PRIVATE: "private" >
+    | < KW_PROTECTED: "protected" >
+    | < KW_PUBLIC: "public" >
+    | < KW_PUBLISHED: "published" >
+    | < KW_READ: "read" >
+    | < KW_REGISTER: "register" >
+    | < KW_REINTRODUCE: "reintroduce" >
+    | < KW_RESULT: "result" >
+    | < KW_SAFECALL: "safecall" >
+    | < KW_SAVEREGISTERS: "saveregisters" >
+    | < KW_SOFTFLOAT: "softfloat" >
+    | < KW_SPECIALIZE: "specialize" >
+    | < KW_STATIC: "static" >
+    | < KW_STDCALL: "stdcall" >
+    | < KW_STORED: "stored" >
+    | < KW_STRICT: "strict" >
+    | < KW_UNALIGNED: "unaligned" >
+    | < KW_VARARGS: "varargs" >
+    | < KW_VIRTUAL: "virtual" >
+    | < KW_WINAPI: "winapi" >
+    | < KW_WRITE: "write" >
 
 // Hint Directives (are Modifies too)
-    | < DEPRECATED: "deprecated" >
-    | < EXPERIMENTAL: "experimental" >
-    | < PLATFORM: "platform" >
-    | < UNIMPLEMENTED: "unimplemented" >
+    | < KW_DEPRECATED: "deprecated" >
+    | < KW_EXPERIMENTAL: "experimental" >
+    | < KW_PLATFORM: "platform" >
+    | < KW_UNIMPLEMENTED: "unimplemented" >
 
 //Others
 
