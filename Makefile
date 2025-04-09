@@ -4,7 +4,7 @@ JAVARUN=java
 
 SRC=Lexical_Analyzer.jj
 GEN=Lexical_Analyzer.java
-INPUT=teste.pas
+INPUTS=$(wildcard test*.pas)
 
 all: compile run
 
@@ -13,7 +13,12 @@ compile:
 	$(JAVA) *.java
 
 run:
-	$(JAVARUN) Lexical_Analyzer < $(INPUT)
+	@echo "\n"; 
+	@for file in $(INPUTS); do \
+		echo "====== Testing $$file ======"; \
+		$(JAVARUN) Lexical_Analyzer < $$file || exit 1; \
+		echo ""; \
+	done
 
 clean:
 	rm -f *.class *.java *.tokens *.bak
