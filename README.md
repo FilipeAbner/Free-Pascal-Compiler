@@ -4,8 +4,19 @@
 
 Voce já parou pra pensar como um compilador funciona? como ele reconhece que um "if" é uma palavra reservada, onde voce nao pode ter uma variavel chamada "if" porem, pode ter uma variavel chamada if8...
 
+## 2 - Tecnologias e Instalação.
 
-## 2 - Descrição.
+ - Esse trabalho foi feito utilizando [JavaCC](https://javacc-github-io.translate.goog/javacc/?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt&_x_tr_pto=tc), o JavaCC é um gerador de analisador sintático aberto para a linguagem Java, voce pode facilmente instala-lo em um sistema operacional Ubuntu com o comando:
+    ```bash
+    $ sudo apt install javacc
+    ```
+
+ - Para testar os arquivos basta criar um arquivo em Free Pascal com o nome no seguinte formato: test.pas, test1.pas, testN.pas. O Makefile esta configurado para ler todos os arquivos no formato anteriormente descrito, portanto basta digitar o comando abaixo que voce poderá visualizar o projeto em execução.
+
+    ```bash
+    $ make
+    ```
+## 3 - Descrição.
 
 - Para entendermos como funciona um compilador temos que entender as várias etapas que se passam até que o seu codigo de alto nivel seja convertido em um codigo de baixo nivel. Para que isso aconteça temos X etapas principais, dentre as quais temos X etapas essencias para seu funcionamento, podemos ver na imagem abaixo quais são essas etapas e em destaque as etapas principais·
 
@@ -13,7 +24,7 @@ Voce já parou pra pensar como um compilador funciona? como ele reconhece que um
 
 Esse trabalho se refere a implementação de um compilador para a linguagem Free Pascal, nem todas as funcionalidades estarão presentes, porém é esperado que o mesmo identifique as principais funções da linguagem. Portanto vamos analisar cada uma das etapas principais isoladamente.
 
-### 2.1 - Análise Léxica
+### 3.1 - Análise Léxica
 
 - Essa etapa consiste na identificação dos tokens que são recebidos pelo compilador, em gramática seria o equivalente a uma análise sintática, ou seja, basicamente vamos apenas diferenciar palavras que existem ou não existem, por exemplo, sabemos que a palavra "computador" existe, pois esta presente no nosso dicionário, porem a palavra "jascuteam" não existe pois não esta presente no nosso dicionario, dessa mesma forma temos as palavras que são reconhecidas pela linguagem de programação e as que não são identificadas são consideradas Identificadores, que basicamente se refere as nossas variáveis. 
 
@@ -45,4 +56,10 @@ Para prosseguirmos temos que entender o que são os tokens.
 
 - Dessa forma podemos então identificar que o Token IF é composto pelas letras "i" e "f" em sequencia, caso ocorra "fi", "i f" ou qualquer outra formatação não será aceito como um token IF válido, o mesmo para o token DIGIT, que será composto por qualquer um dos carateres de 0 a 9, com a identificação dos tokens podemos construir todas as regras para que seja possível reconhecer todo o dicionário da nossa linguagem.
 
-### 2.1 - Parsing
+### 3.2 - Parsing
+
+
+
+
+
+## 4 - Distribuição dos diretórios.
