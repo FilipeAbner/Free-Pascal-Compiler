@@ -18,9 +18,13 @@ Voce já parou pra pensar como um compilador funciona? como ele reconhece que um
     ```
 ## 3 - Descrição.
 
-- Para entendermos como funciona um compilador temos que entender as várias etapas que se passam até que o seu codigo de alto nivel seja convertido em um codigo de baixo nivel. Para que isso aconteça temos X etapas principais, dentre as quais temos X etapas essencias para seu funcionamento, podemos ver na imagem abaixo quais são essas etapas e em destaque as etapas principais·
+- Para entendermos como funciona um compilador temos que entender as várias etapas que se passam até que o seu codigo de alto nivel seja convertido em um codigo de baixo nivel. Para que isso aconteça temos 21 etapas principais, dentre as quais temos 12 etapas essencias para seu funcionamento, podemos ver na imagem abaixo quais são essas etapas e em destaque as etapas principais·
 
-//image
+<p align="center">
+  <img src="images/steps.png" alt="Fluxo de etapas no compilador" />
+</p>
+
+<p align="center"><em>Figura: Fluxo de etapas no compilador, APPEL, Andrew W. <i>Modern Compiler Implementation in Java</i>. Cambridge University Press, 2002.</em></p>
 
 Esse trabalho se refere a implementação de um compilador para a linguagem Free Pascal, nem todas as funcionalidades estarão presentes, porém é esperado que o mesmo identifique as principais funções da linguagem. Portanto vamos analisar cada uma das etapas principais isoladamente.
 
