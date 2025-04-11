@@ -51,7 +51,7 @@ Para prosseguirmos temos que entender o que são os tokens.
 |--------|----------------------------------|
 | `IF`     | `if`             |
 | `DIGIT`    | `["0"-"9"]`    |
-| `SIGN`    | `["+"] | ["-"]`    |
+| `SIGN`    | `["+"] \| ["-"]`    |
 | `NUMBER_REAL`    | `( <SIGN> )? ( <DIGIT> )+ "." ( <DIGIT> )*`    |
 
 - Dessa forma podemos então identificar que o Token IF é composto pelas letras "i" e "f" em sequencia, caso ocorra "fi", "i f" ou qualquer outra formatação não será aceito como um token IF válido, o mesmo para o token DIGIT, que será composto por qualquer um dos carateres de 0 a 9, com a identificação dos tokens podemos construir todas as regras para que seja possível reconhecer todo o dicionário da nossa linguagem.
