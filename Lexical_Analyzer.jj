@@ -238,6 +238,9 @@ TOKEN : {
     | < NUMBER_BINARY: ( <SIGN> )? "%" (<BINARY_DIGIT>)+ >
     | < NUMBER_EXPONENTIAL: ( <SIGN> )? ( ( <DIGIT> )+ (["e","E"]) ( <SIGN> )? ( <DIGIT> )+ ) >
     
+    // Vectors and expressions with brackets
+    | < VECTOR: "[" (<DIGIT>)* "]"  >
+
     // Identifiers
     | < ID: <LETTER> ( <LETTER> | <DIGIT> )* >
     | < ESCAPED_ID: "&" <LETTER> ( <LETTER> | <DIGIT> )* >
