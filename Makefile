@@ -2,23 +2,27 @@ JAVACC=javacc
 JAVA=javac
 JAVARUN=java
 
-SRC=Lexical_Analyzer.jj
-GEN=Lexical_Analyzer.java
-INPUTS=$(wildcard test*.pas)
+SRC=src/lexical_analyzer.jj
+BUILD_DIR=build
+INPUTS=$(wildcard tests/test*.pas)
 
-all: compile run
+all: prepare compile run
 
-compile:
-	$(JAVACC) $(SRC)
-	$(JAVA) *.java
+prepare:
+	@mkdir -p $(BUILD_DIR)
+
+compile: prepare
+	$(JAVACC) -OUTPUT_DIRECTORY=$(BUILD_DIR) $(SRC)
+	$(JAVA) -d $(BUILD_DIR) $(BUILD_DIR)/*.java
 
 run:
-	@echo "\n"; 
+	@echo "\n"
 	@for file in $(INPUTS); do \
-		echo "====== Testing $$file ======"; \
-		$(JAVARUN) Lexical_Analyzer < $$file || exit 1; \
+		filename=$$(basename $$file); \
+		echo "====== Testing $$filename ======"; \
+		$(JAVARUN) -cp $(BUILD_DIR) lexical_analyzer < $$file || exit 1; \
 		echo ""; \
 	done
 
 clean:
-	rm -f *.class *.java *.tokens *.bak
+	rm -rf $(BUILD_DIR)
