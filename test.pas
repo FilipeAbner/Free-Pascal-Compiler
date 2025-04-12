@@ -40,6 +40,15 @@ begin
   o := &777;
   bin := %101010;
 
+  writeln('Strings:');
+  writeln(a);
+  writeln(b);
+  writeln(x);
+  writeln(h);
+  writeln(o);
+  writeln(bin);
+  writeln('END Strings');
+
   s := 'Teste de string com controle: ' + #13#10 + 'nova linha';
   if a > b then
     writeln('IF THEN funcionando')

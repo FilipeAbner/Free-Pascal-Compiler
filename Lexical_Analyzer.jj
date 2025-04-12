@@ -8,6 +8,21 @@ public class Lexical_Analyzer {
         Lexical_Analyzer parser = new Lexical_Analyzer(System.in);
         parser.Start();
     }
+
+    private static String getTokenName(int kind) {
+        java.lang.reflect.Field[] fields = Lexical_AnalyzerConstants.class.getFields();
+        for (java.lang.reflect.Field field : fields) {
+            try {
+                if (field.getType() == int.class && field.getInt(null) == kind) {
+                    return field.getName();
+                }
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+        return "UNKNOWN_TOKEN";
+    }
+
 }
 PARSER_END(Lexical_Analyzer)
 
@@ -256,16 +271,14 @@ SKIP : {
 /* If we have a substring that does not match any of the regular expressions in TOKEN or SKIP,
 JavaCC will automatically throw an error. */
 
-void Start() :
-{}
+void Start() : {}
 {
     {
         Token t;
         do {
             t = getNextToken();
-            System.out.println("Token: " + t.image + " | Type: " + tokenImage[t.kind]);
+            String tokenName = getTokenName(t.kind);
+            System.out.println(tokenName + " " + t.image);
         } while (t.kind != 0); // 0 = EOF
     }
 }
-
-
