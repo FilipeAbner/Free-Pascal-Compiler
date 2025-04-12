@@ -2,15 +2,15 @@ options {
     IGNORE_CASE = true;
 }
 
-PARSER_BEGIN(Lexical_Analyzer)
-public class Lexical_Analyzer {
+PARSER_BEGIN(lexical_analyzer)
+public class lexical_analyzer {
     public static void main(String[] args) throws ParseException {
-        Lexical_Analyzer parser = new Lexical_Analyzer(System.in);
+        lexical_analyzer parser = new lexical_analyzer(System.in);
         parser.Start();
     }
 
     private static String getTokenName(int kind) {
-        java.lang.reflect.Field[] fields = Lexical_AnalyzerConstants.class.getFields();
+        java.lang.reflect.Field[] fields = lexical_analyzerConstants.class.getFields();
         for (java.lang.reflect.Field field : fields) {
             try {
                 if (field.getType() == int.class && field.getInt(null) == kind) {
@@ -24,7 +24,7 @@ public class Lexical_Analyzer {
     }
 
 }
-PARSER_END(Lexical_Analyzer)
+PARSER_END(lexical_analyzer)
 
 /* For the regular expressions on the right, the token on the left will be returned: */
 
@@ -90,6 +90,7 @@ TOKEN : {
     | < KW_LABEL: "label" >
 
 //Modifies (They are not exactly reserved words in the sense that they can be used as identifiers, but in specific places)
+/*
     | < KW_ABSOLUTE: "absolute" >
     | < KW_ABSTRACT: "abstract" >
     | < KW_ALIAS: "alias" >
@@ -147,6 +148,7 @@ TOKEN : {
     | < KW_VIRTUAL: "virtual" >
     | < KW_WINAPI: "winapi" >
     | < KW_WRITE: "write" >
+*/
 
 // Hint Directives (are Modifies too)
     | < KW_DEPRECATED: "deprecated" >
