@@ -10,6 +10,10 @@ Voce já parou pra pensar como um compilador funciona? como ele reconhece que um
     ```bash
     $ sudo apt install javacc
     ```
+ - Voce tambem precisará do Java instalado, é possivel instala-lo com o comando:
+    ```bash
+    $ sudo apt install default-jdk
+    ```
 
  - Para testar os arquivos basta criar um arquivo em Free Pascal com o nome no seguinte formato: test.pas, test1.pas, testN.pas. O Makefile esta configurado para ler todos os arquivos no formato anteriormente descrito, portanto basta digitar o comando abaixo que voce poderá visualizar o projeto em execução.
 
