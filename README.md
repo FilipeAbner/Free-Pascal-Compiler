@@ -6,16 +6,28 @@ Voce já parou pra pensar como um compilador funciona? como ele reconhece que um
 
 ## 2 - Tecnologias e Instalação.
 
- - Esse trabalho foi feito utilizando [JavaCC](https://javacc-github-io.translate.goog/javacc/?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt&_x_tr_pto=tc), o JavaCC é um gerador de analisador sintático aberto para a linguagem Java, voce pode facilmente instala-lo em um sistema operacional Ubuntu com o comando:
-    ```bash
-    $ sudo apt install javacc
-    ```
- - Voce tambem precisará do Java instalado, é possivel instala-lo com o comando:
+ - Esse trabalho foi feito utilizando [JavaCC](https://javacc-github-io.translate.goog/javacc/?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt&_x_tr_pto=tc), o JavaCC é um gerador de analisador sintático aberto para a linguagem Java, voce pode facilmente instala-lo em um sistema operacional Ubuntu. Inicialmente voce precisará do Java instalado, é possivel instala-lo com o comando:
     ```bash
     $ sudo apt install default-jdk
     ```
+ - Logo após voce conseguirá instalar o JavaCC com o comando:
+    ```bash
+    $ sudo apt install javacc   
+    ```
 
- - Para testar os arquivos basta criar um arquivo em Free Pascal com o nome no seguinte formato: test.pas, test1.pas, testN.pas. O Makefile esta configurado para ler todos os arquivos no formato anteriormente descrito, portanto basta digitar o comando abaixo que voce poderá visualizar o projeto em execução.
+### 2.1 - 🧪 Como testar o compilador
+
+Para testar o compilador, siga os passos abaixo:
+
+1. Crie um ou mais arquivos de teste utilizando a linguagem **Free Pascal**.
+2. Nomeie os arquivos no seguinte formato:
+   - `test.pas`, `test1.pas`, `test2.pas`, ..., `testN.pas`
+3. Coloque esses arquivos no diretório [`tests`](tests).
+   - Por padrão o projeto já contém alguns arquivos de teste.
+
+> ✅ O Makefile já está configurado para identificar automaticamente todos os arquivos nesse formato e executá-los.
+
+Para iniciar os testes, basta rodar o seguinte comando no terminal:
 
     ```bash
     $ make
