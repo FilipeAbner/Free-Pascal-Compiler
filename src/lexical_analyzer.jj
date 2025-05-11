@@ -210,6 +210,8 @@ TOKEN : {
     | < INT64: "int64" >
     | < QWORD: "qword" >
 
+    | < DOUBLE: "Double" >
+
     // Boolean types
     | < BOOLEAN: "boolean" >
     | < BOOLEAN16: "boolean16" >
