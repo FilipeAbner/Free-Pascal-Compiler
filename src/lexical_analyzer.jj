@@ -246,6 +246,7 @@ TOKEN : {
     | < #SIGN: ["+"] | ["-"] >
     | < #SINGLE_QUOTES: "''" >
     | < #CONTROL_STRING: "'" ("#" ( <DIGIT> )+ )* "'" >
+    | < #REAL_HELP: ( <SIGN> )? ( <DIGIT> )+ "." ( <DIGIT> )* >
 
 
     // Strings
@@ -257,7 +258,8 @@ TOKEN : {
     | < NUMBER_HEXADECIMAL: ( <SIGN> )? "$" (<DIGIT> | <LETTER_HEXADECIMAL>)+ >
     | < NUMBER_OCTAL: ( <SIGN> )? "&" (<OCTAL_DIGIT>)+ >
     | < NUMBER_BINARY: ( <SIGN> )? "%" (<BINARY_DIGIT>)+ >
-    | < NUMBER_EXPONENTIAL: ( <SIGN> )? ( ( <DIGIT> )+ (["e","E"]) ( <SIGN> )? ( <DIGIT> )+ ) >
+    | < NUMBER_EXPONENTIAL: ( ( <SIGN> )? ( ( <DIGIT> )+ (["e","E"]) ( <SIGN> )? ( <DIGIT> )+ ) ) | 
+            ( ( <SIGN> )? ( ( <REAL_HELP> )+ (["e","E"]) ( <SIGN> )? ( <DIGIT> )+ ) ) >
     
     // Vectors and expressions with brackets
     | < VECTOR: "[" (<DIGIT>)* "]"  >
