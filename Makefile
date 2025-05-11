@@ -15,6 +15,7 @@ compile: prepare
 	$(JAVACC) -OUTPUT_DIRECTORY=$(BUILD_DIR) $(SRC)
 	$(JAVA) -d $(BUILD_DIR) $(BUILD_DIR)/*.java
 
+# Run All files in tests folder
 run:
 	@echo "\n"
 	@for file in $(INPUTS); do \
@@ -23,6 +24,11 @@ run:
 		$(JAVARUN) -cp $(BUILD_DIR) lexical_analyzer < $$file || exit 1; \
 		echo ""; \
 	done
+
+#Run specific files in tests folder
+# run:
+# 	@$(JAVARUN) -cp $(BUILD_DIR) lexical_analyzer < tests/test2.pas || exit 1;
+
 
 clean:
 	rm -rf $(BUILD_DIR)
