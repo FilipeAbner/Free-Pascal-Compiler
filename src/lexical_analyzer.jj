@@ -233,6 +233,8 @@ TOKEN : {
 
 //Others
 
+    | < COMPOUND_TYPE: "of" >
+
     // Intern Tokens
     | < #LETTER: ["a"-"z","A"-"Z"] >
     | < #LETTER_HEXADECIMAL: ["a"-"f","A"-"F"] >
