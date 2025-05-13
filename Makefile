@@ -26,8 +26,9 @@ run:
 	done
 
 #Run specific files in tests folder
+# file ?= tests/test2.pas
 # run:
-# 	@$(JAVARUN) -cp $(BUILD_DIR) lexical_analyzer < tests/test2.pas || exit 1;
+# 	@$(JAVARUN) -cp $(BUILD_DIR) lexical_analyzer < $(file) || exit 1
 
 
 clean:
