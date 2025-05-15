@@ -5,7 +5,7 @@ uses
 
 var
   a, b, c, d, e: Integer;  // Declaração de variáveis
-  numeros: array[1..5] of Integer;
+  arr: array[1..5] of Integer;
   i: Integer;
   cond1, cond2: Boolean;
 
