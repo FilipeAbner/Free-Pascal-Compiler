@@ -3,12 +3,9 @@ program Demonstracao;
 uses
   SysUtils;
 
-type
-  TIntArray = array[1..5] of Integer; // Declaração de tipo de array
-
 var
   a, b, c, d, e: Integer;  // Declaração de variáveis
-  arr: TIntArray;          // Declaração de vetor
+  numeros: array[1..5] of Integer;
   i: Integer;
   cond1, cond2: Boolean;
 
