@@ -1,6 +1,7 @@
 program Demonstracao;
 
-{$mode objfpc} // modo compatível com Pascal clássico
+uses
+  SysUtils;
 
 type
   TIntArray = array[1..5] of Integer; // Declaração de tipo de array
