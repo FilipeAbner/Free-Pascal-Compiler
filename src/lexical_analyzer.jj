@@ -237,6 +237,7 @@ TOKEN : {
 
     | < COMPOUND_TYPE: "of" >
     | < ARRAY: "array" >
+    | < DOUBLE_DOT: ".." >
 
     // Intern Tokens
     | < #LETTER: ["a"-"z","A"-"Z"] >
