@@ -89,8 +89,8 @@ TOKEN : {
 //Label
     | < KW_LABEL: "label" >
 
-//Modifies (They are not exactly reserved words in the sense that they can be used as identifiers, but in specific places)
-/*
+//Modifies (DOCS: They are not exactly reserved words in the sense that they can be used as identifiers, but in specific places)
+//for this work they are treated as reserved words for simplicity
     | < KW_ABSOLUTE: "absolute" >
     | < KW_ABSTRACT: "abstract" >
     | < KW_ALIAS: "alias" >
@@ -148,7 +148,7 @@ TOKEN : {
     | < KW_VIRTUAL: "virtual" >
     | < KW_WINAPI: "winapi" >
     | < KW_WRITE: "write" >
-*/
+
 
 // Hint Directives (are Modifies too)
     | < KW_DEPRECATED: "deprecated" >
@@ -236,6 +236,7 @@ TOKEN : {
 //Others
 
     | < COMPOUND_TYPE: "of" >
+    | < ARRAY: "array" >
 
     // Intern Tokens
     | < #LETTER: ["a"-"z","A"-"Z"] >
