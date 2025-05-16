@@ -255,7 +255,7 @@ TOKEN : {
     | < STRING: "'" ( ~["'"] | <SINGLE_QUOTES> | <CONTROL_STRING> )* "'" >
 
     // Numbers
-    | < NUMBER_REAL: ( <SIGN> )? ( <DIGIT> )+ "." ( <DIGIT> )* >
+    | < NUMBER_REAL: ( <SIGN> )? ( <DIGIT> )+ "." ( <DIGIT> )+ >
     | < NUMBER_INTEGER: ( <SIGN> )? ( <DIGIT> )+ >
     | < NUMBER_HEXADECIMAL: ( <SIGN> )? "$" (<DIGIT> | <LETTER_HEXADECIMAL>)+ >
     | < NUMBER_OCTAL: ( <SIGN> )? "&" (<OCTAL_DIGIT>)+ >
