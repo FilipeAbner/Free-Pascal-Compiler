@@ -6,7 +6,7 @@ SRC=src/lexical_analyzer.jj
 BUILD_DIR=build
 INPUTS=$(wildcard tests/test*.pas)
 
-all: prepare compile run
+all: prepare compile
 
 prepare:
 	@mkdir -p $(BUILD_DIR)
@@ -25,8 +25,8 @@ run:
 		echo ""; \
 	done
 
-#Run specific files in tests folder
-# file ?= tests/test2.pas
+# Run specific files in tests folder
+# file ?= tests/test3.pas
 # run:
 # 	@$(JAVARUN) -cp $(BUILD_DIR) lexical_analyzer < $(file) || exit 1
 
