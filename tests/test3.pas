@@ -5,15 +5,24 @@ uses
 
 var
   a, b, c, d, e: Integer;  // Declaração de variáveis
+  f : Double;
   arr: array[1..5] of Integer;
   i: Integer;
   cond1, cond2: Boolean;
 
 { Declaração de função }
-function Soma(x, y: Integer): Integer;
+function Soma(x: Integer; y: Integer; arrr: array of Integer): Integer;
+var
+  q: Integer;
+var
+  U: Integer;
 begin
-  Soma := x + y; // Retorno de função + operador aritmético "+"
+  u := x + y;     // exemplo de uso
+  Soma := q;
 end;
+
+var
+  P: Integer;
 
 function Subtracao(x, y: Integer): Integer;
 begin
@@ -45,15 +54,15 @@ end;
 
 begin
   // Atribuições
-  a := 10;
+  a := 1;
   b := 5;
   c := 2;
-
+  f := 1.;
   // Operadores aritméticos + parênteses
   d := (a + b) * c - (a div b) + (a mod c);
 
   // Chamada de funções como parte de expressão
-  e := Soma(a, b) + Subtracao(a, c) + Multiplicacao(b, c) + Divisao(a, b) + Resto(a, c);
+  e := Soma(a, b, arr) + Subtracao(a, c) + Multiplicacao(b, c) + Divisao(a, b) + Resto(a, c);
 
   // Controle de fluxo: if
   if a > b then
@@ -86,4 +95,5 @@ begin
 
   // Acesso a vetor
   writeln('Elemento arr[3] = ', arr[3]);
+
 end.
