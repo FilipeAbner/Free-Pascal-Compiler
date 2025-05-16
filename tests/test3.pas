@@ -9,6 +9,7 @@ var
   arr: array[1..5] of Integer;
   i: Integer;
   cond1, cond2: Boolean;
+  resultado: Integer;     
 
 { Declaração de função }
 function Soma(x: Integer; y: Integer; arrr: array of Integer): Integer;
@@ -62,7 +63,40 @@ begin
     Comparacoes := False;
 end;
 
+{ Adição: função que recebe um open array e faz while com vários operadores }
+function TesteOperadores(arrr: array of Integer; threshold: Integer; flag: Boolean): Integer;
+var
+  idx, sum: Integer;
 begin
+  idx := Low(arrr);  // em open arrays, Low=0
+  sum := 0;
+  while
+    ( (idx + sum) * 2            // +, *
+      - (idx mod 3) div 2        // mod, div
+      >= threshold )             // >=
+    or ( (not flag) and (idx <> 0) )              // not, and, <>
+    and ( (sum < threshold) xor (idx >= 3) )      // <, >=, xor
+    or ( idx in [2, 4, 6] )                      // in
+  do
+  begin
+    writeln('Entrou no while: idx=', idx, ' sum=', sum);
+    sum := sum + arrr[idx];
+    idx := idx + 1;
+    if idx > High(arrr) then  // evita sair dos limites
+      Break;
+  end;
+  TesteOperadores := sum;
+end;
+
+begin
+
+  // Inicialize `arr` antes de chamar TesteOperadores
+  arr[1] := 2; arr[2] := 4; arr[3] := 6; arr[4] := 8; arr[5] := 10;
+
+  // Chamada da nova função
+  resultado := TesteOperadores(arr, 20, True);
+  writeln('Resultado de TesteOperadores = ', resultado);
+  
   // Atribuições
   a := 1;
   b := 5;
@@ -105,5 +139,6 @@ begin
 
   // Acesso a vetor
   writeln('Elemento arr[3] = ', arr[3]);
+
 
 end.
