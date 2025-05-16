@@ -24,6 +24,16 @@ end;
 var
   P: Integer;
 
+function UniqueBody(): Integer;
+begin
+    UniqueBody := 1;
+end;
+
+function MenorQue(x, y: Integer): Boolean;
+begin
+  MenorQue := x < y;
+end;
+
 function Subtracao(x, y: Integer): Integer;
 begin
   Subtracao := x - y; // operador aritmético "-"
