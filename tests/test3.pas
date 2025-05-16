@@ -25,6 +25,16 @@ end;
 var
   P: Integer;
 
+function RetornaCinco: Integer;
+begin
+  RetornaCinco := 5;
+end;
+
+function RetornaSeis(): Integer;
+begin
+  RetornaCinco := 6;
+end;
+
 function UniqueBody(): Integer;
 begin
     UniqueBody := 1;
@@ -92,6 +102,9 @@ begin
 
   // Inicialize `arr` antes de chamar TesteOperadores
   arr[1] := 2; arr[2] := 4; arr[3] := 6; arr[4] := 8; arr[5] := 10;
+
+  writeln('Resultado: ', RetornaCinco);  // Saída: Resultado: 5
+  writeln('Resultado: ', RetornaSeis);  // Saída: Resultado: 6
 
   // Chamada da nova função
   resultado := TesteOperadores(arr, 20, True);
