@@ -15,9 +15,12 @@ var
 function Soma(x: Integer; y: Integer; arrr: array of Integer): Integer;
 var
   q: Integer;
+  W: Integer;
 var
   U: Integer;
 begin
+  q := 0;
+  w := arrr[0];
   u := x + y;     // exemplo de uso
   Soma := u;
 end;
@@ -154,6 +157,5 @@ begin
 
   // Acesso a vetor
   writeln('Elemento arr[3] = ', arr[3]);
-
 
 end.
