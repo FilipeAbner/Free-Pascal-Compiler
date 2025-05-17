@@ -19,7 +19,7 @@ var
   U: Integer;
 begin
   u := x + y;     // exemplo de uso
-  Soma := q;
+  Soma := u;
 end;
 
 var
@@ -32,13 +32,15 @@ end;
 
 function RetornaSeis(): Integer;
 begin
-  RetornaCinco := 6;
+  RetornaSeis := 6;
 end;
 
-function UniqueBody(): Integer;
-begin
-    UniqueBody := 1;
-end;
+{
+  procedure WithoutReturn();
+  begin
+      Writeln ('Got parameter ');
+  end;
+}
 
 function MenorQue(x, y: Integer): Boolean;
 begin
