@@ -10,7 +10,8 @@ var
   i: Integer;
   cond1, cond2: Boolean;
   resultado: Integer;     
-
+  multd: array of array of array of Integer;  
+  
 { Declaração de função }
 function Soma(x: Integer; y: Integer; arrr: array of Integer): Integer;
 var
