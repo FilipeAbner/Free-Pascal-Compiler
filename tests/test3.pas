@@ -19,9 +19,11 @@ var
   W: Integer;
 var
   U: Integer;
+  k: Double;
 begin
-  q := 0;
-  w := arrr[0];
+  q := (0);
+  w := (arrr[0]);
+  k := 4.0;
   u := x + y;     // exemplo de uso
   Soma := u;
 end;
