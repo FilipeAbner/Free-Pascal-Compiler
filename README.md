@@ -27,11 +27,23 @@ Para testar o compilador, siga os passos abaixo:
 
 > ✅ O Makefile já está configurado para identificar automaticamente todos os arquivos nesse formato e executá-los.
 
-Para iniciar os testes, basta rodar o seguinte comando no terminal:
+Para iniciar os testes, basta executar o seguinte comando no terminal:
 
     ```bash
     $ make
     ```
+Logo após você pode escolher entre executar os multiplos arquivos como mencionado anteriormente ou executar apenas um arquivo de teste específico.
+
+- Multiplos arquivos: 
+   ````bash
+   $ make run
+   ````
+
+- Arquivo específico:
+   ```bash
+   $ make run-file file=tests/test1.pas
+   ```
+
 ## 3 - Descrição.
 
 - Para entendermos como funciona um compilador temos que entender as várias etapas que se passam até que o seu codigo de alto nivel seja convertido em um codigo de baixo nivel. Para que isso aconteça temos 21 etapas principais, dentre as quais temos 12 etapas essencias para seu funcionamento, podemos ver na imagem abaixo quais são essas etapas e em destaque as etapas principais·

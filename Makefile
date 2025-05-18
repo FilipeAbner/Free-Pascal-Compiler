@@ -1,35 +1,40 @@
-JAVACC=javacc
-JAVA=javac
-JAVARUN=java
+JAVACC   = javacc
+JAVA     = javac
+JAVARUN  = java
 
-SRC=src/lexical_analyzer.jj
-BUILD_DIR=build
-INPUTS=$(wildcard tests/test*.pas)
+SRC        = src/lexical_analyzer.jj
+BUILD_DIR  = build
+OUTPUT_DIR = outputs
+INPUTS     = $(wildcard tests/test*.pas)
+
+.PHONY: all prepare compile run run-file clean
 
 all: prepare compile
 
 prepare:
-	@mkdir -p $(BUILD_DIR)
+	@mkdir -p $(BUILD_DIR) $(OUTPUT_DIR)
 
 compile: prepare
-	$(JAVACC) -OUTPUT_DIRECTORY=$(BUILD_DIR) $(SRC)
-	$(JAVA) -d $(BUILD_DIR) $(BUILD_DIR)/*.java
+	@$(JAVACC) -OUTPUT_DIRECTORY=$(BUILD_DIR) $(SRC)
+	@$(JAVA) -d $(BUILD_DIR) $(BUILD_DIR)/*.java
 
-# Run All files in tests folder
-run:
-	@echo "\n"
+run: compile
+	@echo ""
 	@for file in $(INPUTS); do \
-		filename=$$(basename $$file); \
-		echo "====== Testing $$filename ======"; \
-		$(JAVARUN) -cp $(BUILD_DIR) lexical_analyzer < $$file || exit 1; \
+		base=$$(basename $$file .pas); \
+		echo "====== Testing $$base.pas ======"; \
+		$(JAVARUN) -cp $(BUILD_DIR) lexical_analyzer $$file || exit 1; \
 		echo ""; \
 	done
 
-# Run specific files in tests folder
-# file ?= tests/test3.pas
-# run:
-# 	@$(JAVARUN) -cp $(BUILD_DIR) lexical_analyzer < $(file) || exit 1
+file ?= tests/test3.pas
 
+.PHONY: run-file
+run-file: compile
+	@echo "====== Testing $(notdir $(file)) ======"
+	@$(JAVARUN) -cp $(BUILD_DIR) lexical_analyzer $(file)
 
 clean:
-	rm -rf $(BUILD_DIR)
+	rm -rf $(BUILD_DIR) $(OUTPUT_DIR)
+
+
