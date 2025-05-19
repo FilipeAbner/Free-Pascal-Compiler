@@ -15,11 +15,14 @@ Arithmetic operators: +, -, *, /, %, parentheses, etc.
 */
 
 // general scope of code
-START -> KW_PROGRAM ID SEMI USESOPT BLOCK DOT
+START -> PROGRAM USESOPT BLOCK DOT EOF
+PROGRAM -> KW_PROGRAM ID SEMI 
 
 // Uses Directive
 USESOPT -> ''
-USESOPT -> KW_USES ID USESOPT
+USESOPT -> KW_USES ID USESOPT_TAIL
+USESOPT_TAIL -> COMMA ID USESOPT_TAIL
+USESOPT_TAIL -> SEMI
 
 // blocks of code (All code goes here)
 BLOCK -> ''
@@ -189,4 +192,4 @@ NUMBER_LITERAL -> ID
 
 // Main program
 MAIN_BODY -> BODY
-BLOCK -> KW_BEGIN MAIN_BODY KW_END DOT EOF
+BLOCK -> KW_BEGIN MAIN_BODY KW_END
