@@ -3,11 +3,26 @@ options {
 }
 
 PARSER_BEGIN(lexical_analyzer)
+import java.io.*;
 public class lexical_analyzer {
-    public static void main(String[] args) throws ParseException {
-        lexical_analyzer parser = new lexical_analyzer(System.in);
-        parser.Start();
-    }
+
+    public static PrintWriter gramWriter;
+    public static void main(String[] args) throws ParseException, IOException {
+        if (args.length != 1) {
+            System.err.println("Uso: java lexical_analyzer <arquivo.pas>");
+            System.exit(1);
+        }
+        String inputPath = args[0];
+        String base = new File(inputPath).getName().replaceFirst("\\.pas$", "");
+        File outDir = new File("outputs");
+        if (!outDir.exists()) outDir.mkdirs();
+        gramWriter = new PrintWriter(new FileWriter(new File(outDir, base + ".gram")));
+        
+        // inicializa o parser lendo do arquivo de entrada
+        lexical_analyzer parser = new lexical_analyzer(new FileInputStream(inputPath));
+        parser.Start();          // roda o Start()
+        gramWriter.close();      // fecha o arquivo de saída
+     }
 
     private static String getTokenName(int kind) {
         java.lang.reflect.Field[] fields = lexical_analyzerConstants.class.getFields();
@@ -289,6 +304,7 @@ void Start() : {}
             t = getNextToken();
             String tokenName = getTokenName(t.kind);
             System.out.println(tokenName + " " + t.image);
+            gramWriter.print(tokenName + " ");
         } while (t.kind != 0); // 0 = EOF
     }
 }
