@@ -18,7 +18,7 @@ Arithmetic operators: +, -, *, /, %, parentheses, etc.
 START -> PROGRAM USESOPT BLOCK DOT EOF
 PROGRAM -> KW_PROGRAM ID SEMI 
 
-// Uses Directive
+// Uses Option Directive
 USESOPT -> ''
 USESOPT -> KW_USES ID USESOPT_TAIL
 USESOPT_TAIL -> COMMA ID USESOPT_TAIL
@@ -33,7 +33,6 @@ MAIN_BODY -> BODY
 //TODO: Const declaration
 // Variable Declaration(in var scope, variables cant be initialized, only in const scope)
 VAR_DEFINITION -> KW_VAR VAR_LIST
-VAR_DEFINITION -> ''
 
 // Diferent types of variable declaration
 VAR_LIST -> ARRAY_DECLARATION VAR_LIST
