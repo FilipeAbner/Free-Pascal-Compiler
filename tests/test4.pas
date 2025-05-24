@@ -19,7 +19,7 @@ begin
   
   if cond then
   begin
-    foo(5);
+    WriteLn('VErdadeiro');
   end
   else
   begin
