@@ -1,20 +1,24 @@
-program ExemploWhile;
-
-uses crt;
+program VetorComWhile;
 
 var
-  contador: Integer;
+  numeros: array[1..5] of Integer;
+  i: Integer;
 
 begin
+  // Inicializa o vetor com valores fixos
+  numeros[1] := 10;
+  numeros[2] := 20;
+  numeros[3] := 30;
+  numeros[4] := 40;
+  numeros[5] := 50;
 
-  contador := 1;
-
-  while contador <= 5 do
+  // Laço while para acessar o vetor
+  i := 1;
+  while i <= 5 do
   begin
-    writeln('Contador: ', contador);
-    contador := contador + 1;
+    writeln('Elemento ', i, ': ', numeros[i]);
+    i := i + 1;
   end;
 
-  writeln('Fim do laço!');
-
+  writeln('Fim do acesso ao vetor!');
 end.
