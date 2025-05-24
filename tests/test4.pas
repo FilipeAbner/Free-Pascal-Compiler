@@ -16,10 +16,14 @@ begin
   x := 1;
 
   cond := -5 * (x + foo(3)) <> 0;
-  {
+  
   if cond then
-    WriteLn('Condicao verdadeira!')
+  begin
+    foo(5);
+  end
   else
-    WriteLn('Condicao falsa!');
-  }
+  begin
+    foo(6);
+  end;
+
 end.
