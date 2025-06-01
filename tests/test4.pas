@@ -20,6 +20,8 @@ begin
   if cond then
   begin
     WriteLn('VErdadeiro');
+    WriteLn('VErdadeiro');
+    WriteLn('VErdadeiro');
   end
   else
   begin
