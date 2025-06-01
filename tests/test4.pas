@@ -24,8 +24,21 @@ begin
     WriteLn('VErdadeiro');
   end
   else
+    foo(6);
+
+  if cond then
+    WriteLn('VErdadeiro')
+  else
   begin
     foo(6);
+    foo(5);
   end;
+
+  if x > 1 then
+    WriteLn('VErdadeiro')
+  else if x = 1 then
+    WriteLn('VErdadeiro')
+  else
+    WriteLn('Falso');
 
 end.
