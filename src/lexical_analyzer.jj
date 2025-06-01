@@ -79,6 +79,7 @@ TOKEN : {
     | < KW_XOR: "xor" >
     | < KW_SHL: "shl" >
     | < KW_SHR: "shr" >
+    | < KW_IN: "in" >
 
 //Object Pascal reserved words
     | < KW_AS: "as" >
