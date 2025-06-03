@@ -15,7 +15,7 @@ Arithmetic operators: +, -, *, /, %, parentheses, etc.
 */
 
 // general scope of code
-START -> PROGRAM USESOPT BLOCK DOT EOF
+START -> PROGRAM USESOPT BLOCK DOT
 PROGRAM -> KW_PROGRAM ID SEMI 
 
 // Uses Option Directive

@@ -305,7 +305,11 @@ void Start() : {}
     {
         Token t;
         do {
+
             t = getNextToken();
+            if(t.kind == 0) { // 0 = EOF
+                break; // End of file reached
+            }
             String tokenName = getTokenName(t.kind);
             System.out.println(tokenName + " " + t.image);
             gramWriter.print(tokenName + " ");
