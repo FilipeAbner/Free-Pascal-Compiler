@@ -25,7 +25,7 @@ begin
         WriteLn('x é positivo e y é negativo, mas maior que -10.')
       else
         WriteLn('x é positivo e y é bem negativo.')
-    end;
+    end
   end
   else if x = 0 then
   begin

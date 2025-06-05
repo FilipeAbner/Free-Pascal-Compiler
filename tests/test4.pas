@@ -5,7 +5,7 @@ uses
 
 var
   cond: Boolean;
-  x: Integer;
+  x,y: Integer;
 
 function foo(n: Integer): Integer;
 begin
@@ -14,16 +14,39 @@ end;
 
 begin
   x := 1;
-
+  y := 5;
+  y := y + 1;
   cond := -5 * (x + foo(3)) <> 0;
   
   if cond then
   begin
     WriteLn('VErdadeiro');
+    WriteLn('VErdadeiro');
+    WriteLn('VErdadeiro');
   end
+  else
+    foo(6);
+
+  if cond then
+    WriteLn('VErdadeiro')
   else
   begin
     foo(6);
+    foo(5);
   end;
 
+  if x > 1 then
+    WriteLn('VErdadeiro')
+  else if x = 1 then
+    WriteLn('VErdadeiro')
+  else
+    WriteLn('Falso');
+
+  if x > 0 then
+    while y < 10 do
+      y := y + 1
+  else
+    WriteLn('Falso'); 
+
+  
 end.

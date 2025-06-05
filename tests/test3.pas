@@ -100,8 +100,6 @@ begin
     writeln('Entrou no while: idx=', idx, ' sum=', sum);
     sum := sum + arrr[idx];
     idx := idx + 1;
-    if idx > High(arrr) then  // evita sair dos limites
-      Break;
   end;
   TesteOperadores := sum;
 end;
@@ -122,7 +120,7 @@ begin
   a := 1;
   b := 5;
   c := 2;
-  f := 1.;
+  f := 1.0;
   // Operadores aritméticos + parênteses
   d := (a + b) * c - (a div b) + (a mod c);
 
