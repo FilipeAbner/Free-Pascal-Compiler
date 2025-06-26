@@ -308,6 +308,7 @@ void Start() : {}
 
             t = getNextToken();
             if(t.kind == 0) { // 0 = EOF
+                System.out.print("$ $\n");
                 break; // End of file reached
             }
             String tokenName = getTokenName(t.kind);

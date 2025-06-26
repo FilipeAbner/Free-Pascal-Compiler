@@ -13,7 +13,7 @@ Arithmetic operators: +, -, *, /, %, parentheses, etc.
 • Access to array/vector index
 • Scope: { }, begin-end, etc.
 */
-
+S -> START
 // general scope of code
 START -> PROGRAM USESOPT BLOCK DOT
 PROGRAM -> KW_PROGRAM ID SEMI 
